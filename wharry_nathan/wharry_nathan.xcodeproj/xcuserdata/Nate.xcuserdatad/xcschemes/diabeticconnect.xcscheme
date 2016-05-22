@@ -17,7 +17,7 @@
                BlueprintIdentifier = "434429901CE5575F00610FA3"
                BuildableName = "diabeticconnect.app"
                BlueprintName = "diabeticconnect"
-               ReferencedContainer = "container:diabeticconnect.xcodeproj">
+               ReferencedContainer = "container:wharry_nathan.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "434429A41CE5576000610FA3"
                BuildableName = "diabeticconnectTests.xctest"
                BlueprintName = "diabeticconnectTests"
-               ReferencedContainer = "container:diabeticconnect.xcodeproj">
+               ReferencedContainer = "container:wharry_nathan.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "434429AF1CE5576000610FA3"
                BuildableName = "diabeticconnectUITests.xctest"
                BlueprintName = "diabeticconnectUITests"
-               ReferencedContainer = "container:diabeticconnect.xcodeproj">
+               ReferencedContainer = "container:wharry_nathan.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,7 +55,7 @@
             BlueprintIdentifier = "434429901CE5575F00610FA3"
             BuildableName = "diabeticconnect.app"
             BlueprintName = "diabeticconnect"
-            ReferencedContainer = "container:diabeticconnect.xcodeproj">
+            ReferencedContainer = "container:wharry_nathan.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "434429901CE5575F00610FA3"
             BuildableName = "diabeticconnect.app"
             BlueprintName = "diabeticconnect"
-            ReferencedContainer = "container:diabeticconnect.xcodeproj">
+            ReferencedContainer = "container:wharry_nathan.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,7 +97,7 @@
             BlueprintIdentifier = "434429901CE5575F00610FA3"
             BuildableName = "diabeticconnect.app"
             BlueprintName = "diabeticconnect"
-            ReferencedContainer = "container:diabeticconnect.xcodeproj">
+            ReferencedContainer = "container:wharry_nathan.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -59,3 +59,35 @@ enum Colors {
         }
     }
 }
+
+extension String {
+    func sha1() -> String {
+        let data = self.dataUsingEncoding(NSUTF8StringEncoding)!
+        var digest = [UInt8](count:Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
+        CC_SHA1(data.bytes, CC_LONG(data.length), &digest)
+        let hexBytes = digest.map { String(format: "%02hhx", $0) }
+        return hexBytes.joinWithSeparator("")
+    }
+}
+
+extension NSDate {
+    func format() -> String {
+        let dateformatter = NSDateFormatter()
+        dateformatter.dateFormat = "MMMM d, yyyy"
+        dateformatter.dateStyle = .LongStyle
+        let date = dateformatter.stringFromDate(self)
+        return date
+    }
+}
+
+// extend SwiftData
+func userTable() -> Bool {
+    
+    // query the database for the Users table
+    let tables = SD.executeQuery("SELECT name FROM sqlite_master WHERE name = 'Users'")
+    if tables.result.count == 1 {
+        return true
+    } else {
+        return false
+    }
+}
