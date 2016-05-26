@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="diabeticconnect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="diabeticconnect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -32,12 +32,12 @@
                                     <constraint firstAttribute="width" constant="270" id="HVq-DX-y4j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RMv-KL-con">
                                 <rect key="frame" x="165" y="274" width="270" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kdt-zX-MhW">
                                 <rect key="frame" x="165" y="245" width="79" height="21"/>
@@ -334,21 +334,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Log Out"/>
                                 <connections>
-                                    <segue destination="4G4-cb-Fnv" kind="unwind" unwindAction="homeScreenSegue:" id="YMg-Ig-3pB"/>
+                                    <action selector="logOutBtn:" destination="4fK-Se-M2G" eventType="touchUpInside" id="elh-tm-XYe"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLe-94-H7z" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="4G4-cb-Fnv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1929" y="762"/>
         </scene>
         <!--Item-->
         <scene sceneID="MXH-md-PMk">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nX2-pc-nLR" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="itemScene" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nX2-pc-nLR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Cc9-08-KIo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1uj-Tb-H9L">

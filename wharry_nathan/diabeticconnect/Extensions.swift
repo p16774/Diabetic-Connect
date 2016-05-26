@@ -80,7 +80,26 @@ extension NSDate {
     }
 }
 
-// extend SwiftData
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[self.startIndex.advancedBy(i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = startIndex.advancedBy(r.startIndex)
+        let end = start.advancedBy(r.endIndex - r.startIndex)
+        return self[Range(start ..< end)]
+    }
+}
+
+// MARK: SwiftData Extensions
+
+// user table query to check if a user has been created
 func userTable() -> Bool {
     
     // query the database for the Users table
@@ -91,3 +110,5 @@ func userTable() -> Bool {
         return false
     }
 }
+
+var loggedUserPath : String!

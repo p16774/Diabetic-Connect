@@ -33,11 +33,37 @@ import CareKit
 import ResearchKit
 
 class RootViewController: UITabBarController {
-    // MARK: Properties
     
+    override func viewWillAppear(animated: Bool) {
+        if loggedOut == true {
+            
+            loggedOut = false
+            
+            // rvart our data store
+            //let newStoreManager = CarePlanStoreManager.sharedCarePlanStoreManager
+            //sampleData = SampleData(carePlanStore: newStoreManager.store)
+            storeManager.delegate = self
+            
+            careCardViewController = createCareCardViewController()
+            symptomTrackerViewController = createSymptomTrackerViewController()
+            insightsViewController = createInsightsViewController()
+            connectViewController = createConnectViewController()
+            
+            self.viewControllers = [
+                UINavigationController(rootViewController: careCardViewController),
+                UINavigationController(rootViewController: symptomTrackerViewController),
+                UINavigationController(rootViewController: insightsViewController),
+                UINavigationController(rootViewController: connectViewController)
+            ]
+            
+            print("made it")
+        }
+    }
+    
+    // MARK: Properties
     private let sampleData: SampleData
     
-    private let storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
+    var storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     
     private var careCardViewController: OCKCareCardViewController!
     
@@ -46,6 +72,28 @@ class RootViewController: UITabBarController {
     private var insightsViewController: OCKInsightsViewController!
     
     private var connectViewController: OCKConnectViewController!
+    
+    // MARK: Logout
+    
+    @IBAction func logOutBtn(sender: AnyObject) {
+        
+        // clear the main page screen
+        let playStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC : UIViewController = playStoryboard.instantiateViewControllerWithIdentifier("homeView")
+        let window = UIApplication.sharedApplication().windows[0] as UIWindow;
+        UIView.transitionFromView(
+            window.rootViewController!.view,
+            toView: homeVC.view,
+            duration: 0.65,
+            options: .TransitionCrossDissolve,
+            completion: {
+                finished in window.rootViewController = homeVC
+        })
+        
+        // assign the logged out variable to reinitialize correctly
+        loggedOut = true
+        
+    }
     
     // MARK: Initialization
     
@@ -74,7 +122,7 @@ class RootViewController: UITabBarController {
     private func createInsightsViewController() -> OCKInsightsViewController {
         // Create an `OCKInsightsViewController` with sample data.
         let headerTitle = NSLocalizedString("Weekly Charts", comment: "")
-        let viewController = OCKInsightsViewController(insightItems: storeManager.insights, headerTitle: headerTitle, headerSubtitle: "")
+        let viewController = OCKInsightsViewController(insightItems: self.storeManager.insights, headerTitle: headerTitle, headerSubtitle: "")
         
         // Setup the controller's title and tab bar item
         viewController.title = NSLocalizedString("Insights", comment: "")
@@ -84,7 +132,7 @@ class RootViewController: UITabBarController {
     }
     
     private func createCareCardViewController() -> OCKCareCardViewController {
-        let viewController = OCKCareCardViewController(carePlanStore: storeManager.store)
+        let viewController = OCKCareCardViewController(carePlanStore: self.storeManager.store)
         
         // Setup the controller's title and tab bar item
         viewController.title = NSLocalizedString("Care Card", comment: "")
@@ -94,7 +142,7 @@ class RootViewController: UITabBarController {
     }
     
     private func createSymptomTrackerViewController() -> OCKSymptomTrackerViewController {
-        let viewController = OCKSymptomTrackerViewController(carePlanStore: storeManager.store)
+        let viewController = OCKSymptomTrackerViewController(carePlanStore: self.storeManager.store)
         viewController.delegate = self
         
         // Setup the controller's title and tab bar item

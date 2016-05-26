@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CareKit
+import ResearchKit
 
 class ViewController: UIViewController {
     
@@ -63,6 +65,11 @@ class ViewController: UIViewController {
                     // validate password
                     if password == userInfo.result[0]["Password"]?.asString() {
                         
+                        // set the Care Plan Store folder for user
+                        loggedUserPath = username + password[0...7]
+                        print(loggedUserPath)
+                        
+                        // call the segue to start the app
                         performSegueWithIdentifier("loginSegue", sender: nil)
                         
                     } else {
@@ -138,6 +145,33 @@ class ViewController: UIViewController {
         userName.text = ""
         passWord.text = ""
     
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "loginSegue" {
+            
+            if loggedOut == true {
+                
+                let searchPaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)
+                let applicationSupportPath = searchPaths[0] + "/\(loggedUserPath)"
+                print(applicationSupportPath)
+                let persistenceDirectoryURL = NSURL(fileURLWithPath: applicationSupportPath)
+                
+                if !NSFileManager.defaultManager().fileExistsAtPath(persistenceDirectoryURL.absoluteString, isDirectory: nil) {
+                    try! NSFileManager.defaultManager().createDirectoryAtURL(persistenceDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                }
+                
+                // Create the store.
+                let newStore = OCKCarePlanStore(persistenceDirectoryURL: persistenceDirectoryURL)
+                
+                // grab the viewController
+                let navVC = segue.destinationViewController as! UINavigationController
+                let careCardVC = navVC.topViewController as! RootViewController
+                
+                careCardVC.storeManager.store = newStore
+                
+            }
+        }
     }
 
 

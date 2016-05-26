@@ -92,7 +92,7 @@ class CreateAccountViewController: UIViewController {
                     print(err)
                 } else {
                     print("data entered successfully")
-                    performSegueWithIdentifier("careCardSwgue", sender: nil)
+                    performSegueWithIdentifier("careCardSegue", sender: nil)
                 }
                 
             }

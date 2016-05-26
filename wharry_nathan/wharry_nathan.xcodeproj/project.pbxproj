@@ -14,6 +14,7 @@
 		434B47321CF01FAE00B56F52 /* SwiftData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B47311CF01FAE00B56F52 /* SwiftData.swift */; };
 		434B473A1CF0E20800B56F52 /* sql_placeholder_folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B47391CF0E20800B56F52 /* sql_placeholder_folder.swift */; };
 		434B473C1CF0E27D00B56F52 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B473B1CF0E27D00B56F52 /* CreateAccountViewController.swift */; };
+		434B473F1CF5651800B56F52 /* Global Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B473E1CF5651800B56F52 /* Global Variables.swift */; };
 		436ABBE61CE80D490083B65B /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABBE51CE80D490083B65B /* SampleData.swift */; };
 		436ABC141CE80EA50083B65B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC131CE80EA50083B65B /* AppDelegate.swift */; };
 		436ABC161CE80EAC0083B65B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC151CE80EAC0083B65B /* RootViewController.swift */; };
@@ -127,6 +128,7 @@
 		434B47371CF02BC700B56F52 /* diabeticconnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diabeticconnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		434B47391CF0E20800B56F52 /* sql_placeholder_folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sql_placeholder_folder.swift; sourceTree = "<group>"; };
 		434B473B1CF0E27D00B56F52 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateAccountViewController.swift; path = ViewControllers/CreateAccountViewController.swift; sourceTree = "<group>"; };
+		434B473E1CF5651800B56F52 /* Global Variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Global Variables.swift"; sourceTree = "<group>"; };
 		436ABBE51CE80D490083B65B /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		436ABC131CE80EA50083B65B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		436ABC151CE80EAC0083B65B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				4344299B1CE5576000610FA3 /* Assets.xcassets */,
 				4344299D1CE5576000610FA3 /* LaunchScreen.storyboard */,
 				434429A01CE5576000610FA3 /* Info.plist */,
+				434B473E1CF5651800B56F52 /* Global Variables.swift */,
 			);
 			path = diabeticconnect;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				436ABC221CE810CB0083B65B /* HamstringStretch.swift in Sources */,
 				436AC0951CE8149E0083B65B /* OCKInsightItem+EmptyMessage.swift in Sources */,
 				436ABBE61CE80D490083B65B /* SampleData.swift in Sources */,
+				434B473F1CF5651800B56F52 /* Global Variables.swift in Sources */,
 				434B473C1CF0E27D00B56F52 /* CreateAccountViewController.swift in Sources */,
 				436ABC2D1CE811660083B65B /* Assessment.swift in Sources */,
 				436ABC241CE810CB0083B65B /* TakeMedication.swift in Sources */,
