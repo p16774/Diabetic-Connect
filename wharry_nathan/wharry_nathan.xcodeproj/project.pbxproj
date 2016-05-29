@@ -20,16 +20,12 @@
 		436ABC161CE80EAC0083B65B /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC151CE80EAC0083B65B /* RootViewController.swift */; };
 		436ABC1C1CE810360083B65B /* CarePlanStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC1B1CE810360083B65B /* CarePlanStoreManager.swift */; };
 		436ABC211CE810CB0083B65B /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC1D1CE810CB0083B65B /* Activity.swift */; };
-		436ABC221CE810CB0083B65B /* HamstringStretch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC1E1CE810CB0083B65B /* HamstringStretch.swift */; };
 		436ABC231CE810CB0083B65B /* OutdoorWalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC1F1CE810CB0083B65B /* OutdoorWalk.swift */; };
-		436ABC241CE810CB0083B65B /* TakeMedication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC201CE810CB0083B65B /* TakeMedication.swift */; };
 		436ABC261CE811470083B65B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC251CE811470083B65B /* Extensions.swift */; };
 		436ABC2D1CE811660083B65B /* Assessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC271CE811660083B65B /* Assessment.swift */; };
-		436ABC2E1CE811660083B65B /* BackPain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC281CE811660083B65B /* BackPain.swift */; };
 		436ABC2F1CE811660083B65B /* BloodGlucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC291CE811660083B65B /* BloodGlucose.swift */; };
 		436ABC301CE811660083B65B /* HealthSampleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC2A1CE811660083B65B /* HealthSampleBuilder.swift */; };
 		436ABC311CE811660083B65B /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC2B1CE811660083B65B /* Mood.swift */; };
-		436ABC321CE811660083B65B /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436ABC2C1CE811660083B65B /* Weight.swift */; };
 		436AC0841CE8123A0083B65B /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436AC0811CE8121E0083B65B /* ResearchKit.framework */; };
 		436AC0851CE8123A0083B65B /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 436AC0811CE8121E0083B65B /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		436AC0881CE8123E0083B65B /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436AC06D1CE811E90083B65B /* CareKit.framework */; };
@@ -39,6 +35,8 @@
 		436AC0911CE8148B0083B65B /* QueryActivityEventsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436AC08E1CE8148B0083B65B /* QueryActivityEventsOperation.swift */; };
 		436AC0941CE8149E0083B65B /* NSCalendar+Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436AC0921CE8149E0083B65B /* NSCalendar+Dates.swift */; };
 		436AC0951CE8149E0083B65B /* OCKInsightItem+EmptyMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436AC0931CE8149E0083B65B /* OCKInsightItem+EmptyMessage.swift */; };
+		43D99B8C1CF7E6F2007839BF /* Snacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D99B8B1CF7E6F2007839BF /* Snacks.swift */; };
+		43D99B901CFA2033007839BF /* DrinkWater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D99B8F1CFA2033007839BF /* DrinkWater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,8 +119,6 @@
 		4344299B1CE5576000610FA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4344299E1CE5576000610FA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		434429A01CE5576000610FA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		434429A51CE5576000610FA3 /* diabeticconnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = diabeticconnectTests.xctest; path = "/Users/Nate/Documents/Class Work/APD1/wharry_nathan/build/Debug-iphoneos/diabeticconnectTests.xctest"; sourceTree = "<absolute>"; };
-		434429B01CE5576000610FA3 /* diabeticconnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = diabeticconnectUITests.xctest; path = "/Users/Nate/Documents/Class Work/APD1/wharry_nathan/build/Debug-iphoneos/diabeticconnectUITests.xctest"; sourceTree = "<absolute>"; };
 		434B47311CF01FAE00B56F52 /* SwiftData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftData.swift; sourceTree = "<group>"; };
 		434B47361CF0269E00B56F52 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		434B47371CF02BC700B56F52 /* diabeticconnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = diabeticconnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,16 +130,12 @@
 		436ABC151CE80EAC0083B65B /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		436ABC1B1CE810360083B65B /* CarePlanStoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlanStoreManager.swift; sourceTree = "<group>"; };
 		436ABC1D1CE810CB0083B65B /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Activity.swift; path = Activities/Activity.swift; sourceTree = "<group>"; };
-		436ABC1E1CE810CB0083B65B /* HamstringStretch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HamstringStretch.swift; path = Activities/HamstringStretch.swift; sourceTree = "<group>"; };
 		436ABC1F1CE810CB0083B65B /* OutdoorWalk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutdoorWalk.swift; path = Activities/OutdoorWalk.swift; sourceTree = "<group>"; };
-		436ABC201CE810CB0083B65B /* TakeMedication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TakeMedication.swift; path = Activities/TakeMedication.swift; sourceTree = "<group>"; };
 		436ABC251CE811470083B65B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = diabeticconnect/Extensions.swift; sourceTree = "<group>"; };
 		436ABC271CE811660083B65B /* Assessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assessment.swift; path = Assessments/Assessment.swift; sourceTree = "<group>"; };
-		436ABC281CE811660083B65B /* BackPain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackPain.swift; path = Assessments/BackPain.swift; sourceTree = "<group>"; };
 		436ABC291CE811660083B65B /* BloodGlucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BloodGlucose.swift; path = Assessments/BloodGlucose.swift; sourceTree = "<group>"; };
 		436ABC2A1CE811660083B65B /* HealthSampleBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HealthSampleBuilder.swift; path = Assessments/HealthSampleBuilder.swift; sourceTree = "<group>"; };
 		436ABC2B1CE811660083B65B /* Mood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mood.swift; path = Assessments/Mood.swift; sourceTree = "<group>"; };
-		436ABC2C1CE811660083B65B /* Weight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weight.swift; path = Assessments/Weight.swift; sourceTree = "<group>"; };
 		436AC0641CE811E90083B65B /* CareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CareKit.xcodeproj; path = "Linked Frameworks/CareKit.xcodeproj"; sourceTree = "<group>"; };
 		436AC07A1CE8121E0083B65B /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = "Linked Frameworks/ResearchKit.xcodeproj"; sourceTree = "<group>"; };
 		436AC08C1CE8148B0083B65B /* BuildInsightsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BuildInsightsOperation.swift; path = Insights/BuildInsightsOperation.swift; sourceTree = "<group>"; };
@@ -151,6 +143,10 @@
 		436AC08E1CE8148B0083B65B /* QueryActivityEventsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QueryActivityEventsOperation.swift; path = Insights/QueryActivityEventsOperation.swift; sourceTree = "<group>"; };
 		436AC0921CE8149E0083B65B /* NSCalendar+Dates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSCalendar+Dates.swift"; path = "Extensions/NSCalendar+Dates.swift"; sourceTree = "<group>"; };
 		436AC0931CE8149E0083B65B /* OCKInsightItem+EmptyMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "OCKInsightItem+EmptyMessage.swift"; path = "Extensions/OCKInsightItem+EmptyMessage.swift"; sourceTree = "<group>"; };
+		43D99B8B1CF7E6F2007839BF /* Snacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Snacks.swift; path = Activities/Snacks.swift; sourceTree = "<group>"; };
+		43D99B8F1CFA2033007839BF /* DrinkWater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrinkWater.swift; path = Activities/DrinkWater.swift; sourceTree = "<group>"; };
+		43D99B971CFA90D3007839BF /* diabeticconnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = diabeticconnectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43D99B981CFA90D3007839BF /* diabeticconnectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = diabeticconnectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +188,8 @@
 				436ABBEA1CE80DB50083B65B /* Assessments */,
 				436ABBE91CE80DA10083B65B /* Actvities */,
 				434B47371CF02BC700B56F52 /* diabeticconnect.app */,
+				43D99B971CFA90D3007839BF /* diabeticconnectTests.xctest */,
+				43D99B981CFA90D3007839BF /* diabeticconnectUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -242,9 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				436ABC1D1CE810CB0083B65B /* Activity.swift */,
-				436ABC1E1CE810CB0083B65B /* HamstringStretch.swift */,
 				436ABC1F1CE810CB0083B65B /* OutdoorWalk.swift */,
-				436ABC201CE810CB0083B65B /* TakeMedication.swift */,
+				43D99B8B1CF7E6F2007839BF /* Snacks.swift */,
+				43D99B8F1CFA2033007839BF /* DrinkWater.swift */,
 			);
 			name = Actvities;
 			sourceTree = "<group>";
@@ -253,11 +251,9 @@
 			isa = PBXGroup;
 			children = (
 				436ABC271CE811660083B65B /* Assessment.swift */,
-				436ABC281CE811660083B65B /* BackPain.swift */,
 				436ABC291CE811660083B65B /* BloodGlucose.swift */,
 				436ABC2A1CE811660083B65B /* HealthSampleBuilder.swift */,
 				436ABC2B1CE811660083B65B /* Mood.swift */,
-				436ABC2C1CE811660083B65B /* Weight.swift */,
 			);
 			name = Assessments;
 			sourceTree = "<group>";
@@ -350,7 +346,7 @@
 			);
 			name = diabeticconnectTests;
 			productName = diabeticconnectTests;
-			productReference = 434429A51CE5576000610FA3 /* diabeticconnectTests.xctest */;
+			productReference = 43D99B971CFA90D3007839BF /* diabeticconnectTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		434429AF1CE5576000610FA3 /* diabeticconnectUITests */ = {
@@ -370,7 +366,7 @@
 			);
 			name = diabeticconnectUITests;
 			productName = diabeticconnectUITests;
-			productReference = 434429B01CE5576000610FA3 /* diabeticconnectUITests.xctest */;
+			productReference = 43D99B981CFA90D3007839BF /* diabeticconnectUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -613,18 +609,16 @@
 				436ABC261CE811470083B65B /* Extensions.swift in Sources */,
 				436AC0901CE8148B0083B65B /* InsightsBuilder.swift in Sources */,
 				436AC0911CE8148B0083B65B /* QueryActivityEventsOperation.swift in Sources */,
-				436ABC2E1CE811660083B65B /* BackPain.swift in Sources */,
 				434429971CE5576000610FA3 /* ViewController.swift in Sources */,
 				436ABC1C1CE810360083B65B /* CarePlanStoreManager.swift in Sources */,
 				434B47321CF01FAE00B56F52 /* SwiftData.swift in Sources */,
 				436ABC161CE80EAC0083B65B /* RootViewController.swift in Sources */,
-				436ABC221CE810CB0083B65B /* HamstringStretch.swift in Sources */,
 				436AC0951CE8149E0083B65B /* OCKInsightItem+EmptyMessage.swift in Sources */,
+				43D99B8C1CF7E6F2007839BF /* Snacks.swift in Sources */,
 				436ABBE61CE80D490083B65B /* SampleData.swift in Sources */,
 				434B473F1CF5651800B56F52 /* Global Variables.swift in Sources */,
 				434B473C1CF0E27D00B56F52 /* CreateAccountViewController.swift in Sources */,
 				436ABC2D1CE811660083B65B /* Assessment.swift in Sources */,
-				436ABC241CE810CB0083B65B /* TakeMedication.swift in Sources */,
 				436AC0941CE8149E0083B65B /* NSCalendar+Dates.swift in Sources */,
 				436ABC311CE811660083B65B /* Mood.swift in Sources */,
 				436ABC211CE810CB0083B65B /* Activity.swift in Sources */,
@@ -632,8 +626,8 @@
 				434B473A1CF0E20800B56F52 /* sql_placeholder_folder.swift in Sources */,
 				436ABC2F1CE811660083B65B /* BloodGlucose.swift in Sources */,
 				436ABC231CE810CB0083B65B /* OutdoorWalk.swift in Sources */,
+				43D99B901CFA2033007839BF /* DrinkWater.swift in Sources */,
 				436AC08F1CE8148B0083B65B /* BuildInsightsOperation.swift in Sources */,
-				436ABC321CE811660083B65B /* Weight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

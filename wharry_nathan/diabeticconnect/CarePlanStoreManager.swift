@@ -53,7 +53,6 @@ class CarePlanStoreManager: NSObject {
         // Determine the file URL for the store.
         let searchPaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)
         let applicationSupportPath = searchPaths[0] + "/\(loggedUserPath)"
-        print(applicationSupportPath)
         let persistenceDirectoryURL = NSURL(fileURLWithPath: applicationSupportPath)
         
         if !NSFileManager.defaultManager().fileExistsAtPath(persistenceDirectoryURL.absoluteString, isDirectory: nil) {

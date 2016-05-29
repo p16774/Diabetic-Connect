@@ -67,7 +67,6 @@ class ViewController: UIViewController {
                         
                         // set the Care Plan Store folder for user
                         loggedUserPath = username + password[0...7]
-                        print(loggedUserPath)
                         
                         // call the segue to start the app
                         performSegueWithIdentifier("loginSegue", sender: nil)
@@ -154,7 +153,6 @@ class ViewController: UIViewController {
                 
                 let searchPaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)
                 let applicationSupportPath = searchPaths[0] + "/\(loggedUserPath)"
-                print(applicationSupportPath)
                 let persistenceDirectoryURL = NSURL(fileURLWithPath: applicationSupportPath)
                 
                 if !NSFileManager.defaultManager().fileExistsAtPath(persistenceDirectoryURL.absoluteString, isDirectory: nil) {

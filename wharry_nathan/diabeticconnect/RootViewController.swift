@@ -37,31 +37,37 @@ class RootViewController: UITabBarController {
     override func viewWillAppear(animated: Bool) {
         if loggedOut == true {
             
+            // reset our check variable and rebuild the viewcontrollers
             loggedOut = false
-            
-            // rvart our data store
-            //let newStoreManager = CarePlanStoreManager.sharedCarePlanStoreManager
-            //sampleData = SampleData(carePlanStore: newStoreManager.store)
-            storeManager.delegate = self
-            
-            careCardViewController = createCareCardViewController()
-            symptomTrackerViewController = createSymptomTrackerViewController()
-            insightsViewController = createInsightsViewController()
-            connectViewController = createConnectViewController()
-            
-            self.viewControllers = [
-                UINavigationController(rootViewController: careCardViewController),
-                UINavigationController(rootViewController: symptomTrackerViewController),
-                UINavigationController(rootViewController: insightsViewController),
-                UINavigationController(rootViewController: connectViewController)
-            ]
-            
-            print("made it")
+            rebuildControllers()
+        
         }
     }
     
+    func rebuildControllers() {
+        
+        self.viewControllers = nil
+        
+        sampleData = SampleData(carePlanStore: storeManager.store)
+        
+        careCardViewController = createCareCardViewController()
+        symptomTrackerViewController = createSymptomTrackerViewController()
+        insightsViewController = createInsightsViewController()
+        connectViewController = createConnectViewController()
+        
+        self.viewControllers = [
+            UINavigationController(rootViewController: careCardViewController),
+            UINavigationController(rootViewController: symptomTrackerViewController),
+            UINavigationController(rootViewController: insightsViewController),
+            UINavigationController(rootViewController: connectViewController)
+        ]
+        
+        storeManager.delegate = self
+        
+    }
+    
     // MARK: Properties
-    private let sampleData: SampleData
+    var sampleData: SampleData
     
     var storeManager = CarePlanStoreManager.sharedCarePlanStoreManager
     
@@ -77,21 +83,39 @@ class RootViewController: UITabBarController {
     
     @IBAction func logOutBtn(sender: AnyObject) {
         
-        // clear the main page screen
-        let playStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeVC : UIViewController = playStoryboard.instantiateViewControllerWithIdentifier("homeView")
-        let window = UIApplication.sharedApplication().windows[0] as UIWindow;
-        UIView.transitionFromView(
-            window.rootViewController!.view,
-            toView: homeVC.view,
-            duration: 0.65,
-            options: .TransitionCrossDissolve,
-            completion: {
-                finished in window.rootViewController = homeVC
+        // alert user before logging them out
+        //Create the AlertController to create an initial account
+        let loginAlertController: UIAlertController = UIAlertController(title: "Logout Current User", message: "The current user will be logged out. You will have to login again to use.", preferredStyle: .Alert)
+        
+        // add the logout button
+        let confirmAction: UIAlertAction = UIAlertAction(title: "Logout", style: .Cancel, handler: { (action) in
+            
+            // clear the main page screen
+            self.navigationController?.popViewControllerAnimated(true)
+            let playStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeVC : UIViewController = playStoryboard.instantiateViewControllerWithIdentifier("homeView")
+            let window = UIApplication.sharedApplication().windows[0] as UIWindow;
+            UIView.transitionFromView(
+                window.rootViewController!.view,
+                toView: homeVC.view,
+                duration: 1.00,
+                options: .TransitionCrossDissolve,
+                completion: {
+                    finished in window.rootViewController = homeVC
+            })
+            
+            // assign the logged out variable to reinitialize correctly
+            loggedOut = true
         })
         
-        // assign the logged out variable to reinitialize correctly
-        loggedOut = true
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
+        
+        // add above actions to the alertcontroller
+        loginAlertController.addAction(cancelAction)
+        loginAlertController.addAction(confirmAction)
+        
+        // call logout alert
+        presentViewController(loginAlertController, animated: true, completion: nil)
         
     }
     
@@ -135,7 +159,7 @@ class RootViewController: UITabBarController {
         let viewController = OCKCareCardViewController(carePlanStore: self.storeManager.store)
         
         // Setup the controller's title and tab bar item
-        viewController.title = NSLocalizedString("Care Card", comment: "")
+        viewController.title = NSLocalizedString("Activities", comment: "")
         viewController.tabBarItem = UITabBarItem(title: viewController.title, image: UIImage(named:"carecard"), selectedImage: UIImage(named: "carecard-filled"))
         
         return viewController
@@ -146,7 +170,7 @@ class RootViewController: UITabBarController {
         viewController.delegate = self
         
         // Setup the controller's title and tab bar item
-        viewController.title = NSLocalizedString("Symptom Tracker", comment: "")
+        viewController.title = NSLocalizedString("Daily Tasks", comment: "")
         viewController.tabBarItem = UITabBarItem(title: viewController.title, image: UIImage(named:"symptoms"), selectedImage: UIImage(named: "symptoms-filled"))
         
         return viewController

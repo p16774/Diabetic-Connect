@@ -35,6 +35,9 @@ import CareKit
  Struct that conforms to the `Assessment` protocol to define a mood
  assessment.
  */
+
+
+/*
 struct Mood: Assessment {
     // MARK: Activity
     
@@ -90,3 +93,4 @@ struct Mood: Assessment {
         return task
     }
 }
+ */

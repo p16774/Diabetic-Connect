@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CareKit
 
 class CreateAccountViewController: UIViewController {
 
@@ -79,7 +80,7 @@ class CreateAccountViewController: UIViewController {
                         //there was an error during the insert, handle it here
                         print(err)
                     } else {
-                        print("data entered successfully")
+                        loggedUserPath = username + password[0...7]
                         performSegueWithIdentifier("careCardSegue", sender: nil)
                     }
                 }
@@ -91,7 +92,7 @@ class CreateAccountViewController: UIViewController {
                     //there was an error during the insert, handle it here
                     print(err)
                 } else {
-                    print("data entered successfully")
+                    loggedUserPath = username + password[0...7]
                     performSegueWithIdentifier("careCardSegue", sender: nil)
                 }
                 
@@ -109,9 +110,6 @@ class CreateAccountViewController: UIViewController {
         // add gesture to the current view
         view.addGestureRecognizer(tap)
         
-        // configure date picker
-        //birthDate.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,14 +124,34 @@ class CreateAccountViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "careCardSegue" {
+            
+            if loggedOut == true {
+                
+                let searchPaths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)
+                let applicationSupportPath = searchPaths[0] + "/\(loggedUserPath)"
+                print(applicationSupportPath)
+                let persistenceDirectoryURL = NSURL(fileURLWithPath: applicationSupportPath)
+                
+                if !NSFileManager.defaultManager().fileExistsAtPath(persistenceDirectoryURL.absoluteString, isDirectory: nil) {
+                    try! NSFileManager.defaultManager().createDirectoryAtURL(persistenceDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                }
+                
+                // Create the store.
+                let newStore = OCKCarePlanStore(persistenceDirectoryURL: persistenceDirectoryURL)
+                
+                // grab the viewController
+                let navVC = segue.destinationViewController as! UINavigationController
+                let careCardVC = navVC.topViewController as! RootViewController
+                
+                careCardVC.storeManager.store = newStore
+                
+            }
+        }
     }
-    */
 
 }

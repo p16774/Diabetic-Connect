@@ -59,8 +59,8 @@ class InsightsBuilder {
             `TakeMedication` activity.
          */
         
-        let medicationEventsOperation = QueryActivityEventsOperation(store: carePlanStore,
-                                                                     activityIdentifier: ActivityType.TakeMedication.rawValue,
+        let diabetesEventsOperation = QueryActivityEventsOperation(store: carePlanStore,
+                                                                     activityIdentifier: ActivityType.DrinkWater.rawValue,
                                                                      startDate: queryDateRange.start,
                                                                      endDate: queryDateRange.end)
 
@@ -68,11 +68,22 @@ class InsightsBuilder {
             Create an operation to query for events for the previous week and
             current weeks' `BackPain` assessment.
          */
-        let backPainEventsOperation = QueryActivityEventsOperation(store: carePlanStore,
-                                                                   activityIdentifier: ActivityType.BackPain.rawValue,
+        
+        let glucoseBreakfastEvents = QueryActivityEventsOperation(store: carePlanStore,
+                                                                   activityIdentifier: ActivityType.BloodGlucoseBreakfast.rawValue,
                                                                    startDate: queryDateRange.start,
                                                                    endDate: queryDateRange.end)
-
+        
+        let glucoseLunchEvents = QueryActivityEventsOperation(store: carePlanStore,
+                                                                activityIdentifier: ActivityType.BloodGlucoseLunch.rawValue,
+                                                                startDate: queryDateRange.start,
+                                                                endDate: queryDateRange.end)
+        
+        let glucoseDinnerEvents = QueryActivityEventsOperation(store: carePlanStore,
+                                                                activityIdentifier: ActivityType.BloodGlucoseDinner.rawValue,
+                                                                startDate: queryDateRange.start,
+                                                                endDate: queryDateRange.end)
+ 
         /*
             Create a `BuildInsightsOperation` to create insights from the data
             collected by query operations.
@@ -85,8 +96,10 @@ class InsightsBuilder {
         */
         let aggregateDataOperation = NSBlockOperation {
             // Copy the queried data from the query operations to the `BuildInsightsOperation`.
-            buildInsightsOperation.medicationEvents = medicationEventsOperation.dailyEvents
-            buildInsightsOperation.backPainEvents = backPainEventsOperation.dailyEvents
+            buildInsightsOperation.diabetesEvents = diabetesEventsOperation.dailyEvents
+            buildInsightsOperation.breakfastEvents = glucoseBreakfastEvents.dailyEvents
+            buildInsightsOperation.lunchEvents = glucoseLunchEvents.dailyEvents
+            buildInsightsOperation.dinnerEvents = glucoseDinnerEvents.dailyEvents
         }
         
         /*
@@ -109,16 +122,20 @@ class InsightsBuilder {
         }
         
         // The aggregate operation is dependent on the query operations.
-        aggregateDataOperation.addDependency(medicationEventsOperation)
-        aggregateDataOperation.addDependency(backPainEventsOperation)
+        aggregateDataOperation.addDependency(diabetesEventsOperation)
+        aggregateDataOperation.addDependency(glucoseBreakfastEvents)
+        aggregateDataOperation.addDependency(glucoseLunchEvents)
+        aggregateDataOperation.addDependency(glucoseDinnerEvents)
         
         // The `BuildInsightsOperation` is dependent on the aggregate operation.
         buildInsightsOperation.addDependency(aggregateDataOperation)
         
         // Add all the operations to the operation queue.
         updateOperationQueue.addOperations([
-            medicationEventsOperation,
-            backPainEventsOperation,
+            diabetesEventsOperation,
+            glucoseBreakfastEvents,
+            glucoseLunchEvents,
+            glucoseDinnerEvents,
             aggregateDataOperation,
             buildInsightsOperation
         ], waitUntilFinished: false)

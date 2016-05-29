@@ -38,12 +38,11 @@ class SampleData: NSObject {
     /// An array of `Activity`s used in the app.
     let activities: [Activity] = [
         OutdoorWalk(),
-        HamstringStretch(),
-        TakeMedication(),
-        BackPain(),
-        Mood(),
-        BloodGlucose(),
-        Weight()
+        MorningSnack(),
+        DrinkWater(),
+        BloodGlucoseBreakfast(),
+        BloodGlucoseLunch(),
+        BloodGlucoseDinner(),
     ]
     
     /**

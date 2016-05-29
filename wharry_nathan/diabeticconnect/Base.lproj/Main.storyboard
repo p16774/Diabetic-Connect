@@ -306,6 +306,7 @@
                         <outlet property="passWord" destination="peo-Ha-cub" id="1ec-cQ-ENU"/>
                         <outlet property="userName" destination="IsR-V0-jVn" id="SbW-Tz-foh"/>
                         <segue destination="nX2-pc-nLR" kind="show" identifier="careCardSegue" id="53J-IP-WO4"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="loginReturnSegue" id="YnF-bd-C5Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alA-Yh-3e0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -327,14 +328,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="pV0-7c-Rr7">
-                        <barButtonItem key="rightBarButtonItem" id="dE6-YF-NcX">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DOy-1v-QdZ">
+                        <barButtonItem key="rightBarButtonItem" id="3YY-iw-cgV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ORH-S9-8jn">
                                 <rect key="frame" x="447" y="7" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Log Out"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Log Out">
+                                            <attributes>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
                                 <connections>
-                                    <action selector="logOutBtn:" destination="4fK-Se-M2G" eventType="touchUpInside" id="elh-tm-XYe"/>
+                                    <action selector="logOutBtn:" destination="4fK-Se-M2G" eventType="touchUpInside" id="UL9-dQ-FgP"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -368,6 +376,6 @@
         <image name="login_button" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cDY-QS-i8B"/>
+        <segue reference="53J-IP-WO4"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -42,12 +42,12 @@ struct OutdoorWalk: Activity {
     func carePlanActivity() -> OCKCarePlanActivity {
         // Create a weekly schedule.
         let startDate = NSDateComponents(year: 2016, month: 01, day: 01)
-        let schedule = OCKCareSchedule.weeklyScheduleWithStartDate(startDate, occurrencesOnEachDay: [2, 1, 1, 1, 1, 1, 2])
+        let schedule = OCKCareSchedule.weeklyScheduleWithStartDate(startDate, occurrencesOnEachDay: [3, 2, 2, 2, 2, 2, 3])
         
         // Get the localized strings to use for the activity.
         let title = NSLocalizedString("Outdoor walk", comment: "")
-        let summary = NSLocalizedString("15 mins", comment: "")
-        let instructions = NSLocalizedString("Take a leisurely walk.", comment: "")
+        let summary = NSLocalizedString("20 mins", comment: "")
+        let instructions = NSLocalizedString("Walk to get some exercise", comment: "")
         
         // Create the intervention activity.
         let activity = OCKCarePlanActivity.interventionWithIdentifier(

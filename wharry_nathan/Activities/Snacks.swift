@@ -31,13 +31,13 @@
 import CareKit
 
 /**
- Struct that conforms to the `Activity` protocol to define an activity to take
- medication.
+ Struct that conforms to the `Activity` protocol to define an outdoor walking
+ activity.
  */
-struct TakeMedication: Activity {
+struct MorningSnack: Activity {
     // MARK: Activity
     
-    let activityType: ActivityType = .TakeMedication
+    let activityType: ActivityType = .MorningSnack
     
     func carePlanActivity() -> OCKCarePlanActivity {
         // Create a weekly schedule.
@@ -45,16 +45,17 @@ struct TakeMedication: Activity {
         let schedule = OCKCareSchedule.weeklyScheduleWithStartDate(startDate, occurrencesOnEachDay: [2, 2, 2, 2, 2, 2, 2])
         
         // Get the localized strings to use for the activity.
-        let title = NSLocalizedString("Ibuprofen", comment: "")
-        let summary = NSLocalizedString("200mg", comment: "")
-        let instructions = NSLocalizedString("Take with food.", comment: "")
+        let title = NSLocalizedString("Snacks", comment: "")
+        let summary = NSLocalizedString("High in Protein", comment: "")
+        let instructions = NSLocalizedString("Did you eat a snack?", comment: "")
         
+        // Create the intervention activity.
         let activity = OCKCarePlanActivity.interventionWithIdentifier(
             activityType.rawValue,
             groupIdentifier: nil,
             title: title,
             text: summary,
-            tintColor: Colors.Green.color,
+            tintColor: Colors.LightBlue.color,
             instructions: instructions,
             imageURL: nil,
             schedule: schedule,

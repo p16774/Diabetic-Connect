@@ -31,25 +31,36 @@
 import CareKit
 
 /**
- Protocol that defines the properties and methods for sample activities.
+ Struct that conforms to the `Activity` protocol to define an activity to take
+ medication.
  */
-protocol Activity {
-    var activityType: ActivityType { get }
+struct DrinkWater: Activity {
+    // MARK: Activity
     
-    func carePlanActivity() -> OCKCarePlanActivity
-}
-
-
-/**
- Enumeration of strings used as identifiers for the `SampleActivity`s used in
- the app.
- */
-enum ActivityType: String {
-    case OutdoorWalk
-    case MorningSnack
-    case DrinkWater
+    let activityType: ActivityType = .DrinkWater
     
-    case BloodGlucoseBreakfast
-    case BloodGlucoseLunch
-    case BloodGlucoseDinner
+    func carePlanActivity() -> OCKCarePlanActivity {
+        // Create a weekly schedule.
+        let startDate = NSDateComponents(year: 2016, month: 01, day: 01)
+        let schedule = OCKCareSchedule.weeklyScheduleWithStartDate(startDate, occurrencesOnEachDay: [3, 3, 3, 3, 3, 3, 3])
+        
+        // Get the localized strings to use for the activity.
+        let title = NSLocalizedString("Drink Water", comment: "")
+        let summary = NSLocalizedString("8oz Servings", comment: "")
+        let instructions = NSLocalizedString("Drink water to help flush sugar from your body.", comment: "")
+        
+        let activity = OCKCarePlanActivity.interventionWithIdentifier(
+            activityType.rawValue,
+            groupIdentifier: nil,
+            title: title,
+            text: summary,
+            tintColor: Colors.Purple.color,
+            instructions: instructions,
+            imageURL: nil,
+            schedule: schedule,
+            userInfo: nil
+        )
+        
+        return activity
+    }
 }

@@ -35,10 +35,10 @@ import CareKit
  Struct that conforms to the `Assessment` protocol to define a blood glucose
  assessment.
  */
-struct BloodGlucose: Assessment {
+struct BloodGlucoseBreakfast: Assessment {
     // MARK: Activity
     
-    let activityType: ActivityType = .BloodGlucose
+    let activityType: ActivityType = .BloodGlucoseBreakfast
     
     func carePlanActivity() -> OCKCarePlanActivity {
         // Create a weekly schedule.
@@ -47,7 +47,103 @@ struct BloodGlucose: Assessment {
         
         // Get the localized strings to use for the assessment.
         let title = NSLocalizedString("Blood Glucose", comment: "")
-        let summary = NSLocalizedString("After dinner", comment: "")
+        let summary = NSLocalizedString("Before Breakfast", comment: "")
+        
+        let activity = OCKCarePlanActivity.assessmentWithIdentifier(
+            activityType.rawValue,
+            groupIdentifier: nil,
+            title: title,
+            text: summary,
+            tintColor: Colors.Purple.color,
+            resultResettable: false,
+            schedule: schedule,
+            userInfo: nil
+        )
+        
+        return activity
+    }
+    
+    // MARK: Assessment
+    
+    func task() -> ORKTask {
+        // Get the localized strings to use for the task.
+        let quantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBloodGlucose)!
+        let unit = HKUnit(fromString: "mg/dL")
+        let answerFormat = ORKHealthKitQuantityTypeAnswerFormat(quantityType: quantityType, unit: unit, style: .Decimal)
+        
+        // Create a question.
+        let title = NSLocalizedString("Input your blood glucose", comment: "")
+        let questionStep = ORKQuestionStep(identifier: activityType.rawValue, title: title, answer: answerFormat)
+        questionStep.optional = false
+        
+        // Create an ordered task with a single question.
+        let task = ORKOrderedTask(identifier: activityType.rawValue, steps: [questionStep])
+        
+        return task
+    }
+}
+
+struct BloodGlucoseLunch: Assessment {
+    // MARK: Activity
+    
+    let activityType: ActivityType = .BloodGlucoseLunch
+    
+    func carePlanActivity() -> OCKCarePlanActivity {
+        // Create a weekly schedule.
+        let startDate = NSDateComponents(year: 2016, month: 01, day: 01)
+        let schedule = OCKCareSchedule.weeklyScheduleWithStartDate(startDate, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 1])
+        
+        // Get the localized strings to use for the assessment.
+        let title = NSLocalizedString("Blood Glucose", comment: "")
+        let summary = NSLocalizedString("Before Lunch", comment: "")
+        
+        let activity = OCKCarePlanActivity.assessmentWithIdentifier(
+            activityType.rawValue,
+            groupIdentifier: nil,
+            title: title,
+            text: summary,
+            tintColor: Colors.Green.color,
+            resultResettable: false,
+            schedule: schedule,
+            userInfo: nil
+        )
+        
+        return activity
+    }
+    
+    // MARK: Assessment
+    
+    func task() -> ORKTask {
+        // Get the localized strings to use for the task.
+        let quantityType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBloodGlucose)!
+        let unit = HKUnit(fromString: "mg/dL")
+        let answerFormat = ORKHealthKitQuantityTypeAnswerFormat(quantityType: quantityType, unit: unit, style: .Decimal)
+        
+        // Create a question.
+        let title = NSLocalizedString("Input your blood glucose", comment: "")
+        let questionStep = ORKQuestionStep(identifier: activityType.rawValue, title: title, answer: answerFormat)
+        questionStep.optional = false
+        
+        // Create an ordered task with a single question.
+        let task = ORKOrderedTask(identifier: activityType.rawValue, steps: [questionStep])
+        
+        return task
+    }
+}
+
+struct BloodGlucoseDinner: Assessment {
+    // MARK: Activity
+    
+    let activityType: ActivityType = .BloodGlucoseDinner
+    
+    func carePlanActivity() -> OCKCarePlanActivity {
+        // Create a weekly schedule.
+        let startDate = NSDateComponents(year: 2016, month: 01, day: 01)
+        let schedule = OCKCareSchedule.weeklyScheduleWithStartDate(startDate, occurrencesOnEachDay: [1, 1, 1, 1, 1, 1, 1])
+        
+        // Get the localized strings to use for the assessment.
+        let title = NSLocalizedString("Blood Glucose", comment: "")
+        let summary = NSLocalizedString("Before Dinner", comment: "")
         
         let activity = OCKCarePlanActivity.assessmentWithIdentifier(
             activityType.rawValue,

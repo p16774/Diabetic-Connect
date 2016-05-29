@@ -34,9 +34,14 @@ class BuildInsightsOperation: NSOperation {
     
     // MARK: Properties
     
-    var medicationEvents: DailyEvents?
+    var diabetesEvents: DailyEvents?
+    var glucoseEvents: DailyEvents?
+    var breakfastEvents: DailyEvents?
+    var lunchEvents: DailyEvents?
+    var dinnerEvents: DailyEvents?
     
-    var backPainEvents: DailyEvents?
+    // create our glucoseAverages variable
+    var glucoseAverages : [Int] = []
     
     private(set) var insights = [OCKInsightItem.emptyInsightsMessage()]
     
@@ -67,7 +72,7 @@ class BuildInsightsOperation: NSOperation {
     
     func createMedicationAdherenceInsight() -> OCKInsightItem? {
         // Make sure there are events to parse.
-        guard let medicationEvents = medicationEvents else { return nil }
+        guard let diabetesEvents = diabetesEvents else { return nil }
         
         // Determine the start date for the previous week.
         let calendar = NSCalendar.currentCalendar()
@@ -84,7 +89,7 @@ class BuildInsightsOperation: NSOperation {
             components.day = offset
             let dayDate = calendar.dateByAddingComponents(components, toDate: startDate, options: [])!
             let dayComponents = NSDateComponents(date: dayDate, calendar: calendar)
-            let eventsForDay = medicationEvents[dayComponents]
+            let eventsForDay = diabetesEvents[dayComponents]
             
             totalEventCount += eventsForDay.count
             
@@ -105,14 +110,14 @@ class BuildInsightsOperation: NSOperation {
         percentageFormatter.numberStyle = .PercentStyle
         let formattedAdherence = percentageFormatter.stringFromNumber(medicationAdherence)!
 
-        let insight = OCKMessageItem(title: "Medication Adherence", text: "Your medication adherence was \(formattedAdherence) last week.", tintColor: Colors.Pink.color, messageType: .Tip)
+        let insight = OCKMessageItem(title: "Diabetes Management Adherence", text: "Your diabetes management adherence was \(formattedAdherence) last week.", tintColor: Colors.Pink.color, messageType: .Tip)
         
         return insight
     }
     
     func createBackPainInsight() -> OCKInsightItem? {
         // Make sure there are events to parse.
-        guard let medicationEvents = medicationEvents, backPainEvents = backPainEvents else { return nil }
+        guard let diabetesEvents = diabetesEvents, breakfastEvents = breakfastEvents, lunchEvents = lunchEvents, dinnerEvents = dinnerEvents else { return nil }
         
         // Determine the date to start pain/medication comparisons from.
         let calendar = NSCalendar.currentCalendar()
@@ -135,10 +140,10 @@ class BuildInsightsOperation: NSOperation {
             Loop through 7 days, collecting medication adherance and pain scores
             for each.
         */
-        var medicationValues = [Float]()
-        var medicationLabels = [String]()
-        var painValues = [Int]()
-        var painLabels = [String]()
+        var diabetesValues = [Float]()
+        var diabetesLabels = [String]()
+        var glucoseValues = [Int]()
+        var glucoseLabels = [String]()
         var axisTitles = [String]()
         var axisSubtitles = [String]()
         
@@ -148,28 +153,56 @@ class BuildInsightsOperation: NSOperation {
             let dayDate = calendar.dateByAddingComponents(components, toDate: startDate, options: [])!
             let dayComponents = NSDateComponents(date: dayDate, calendar: calendar)
             
+            // empty our average array
+            glucoseAverages = []
+            
             // Store the pain result for the current day.
-            if let result = backPainEvents[dayComponents].first?.result, score = Int(result.valueString) where score > 0 {
-                painValues.append(score)
-                painLabels.append(result.valueString)
-            }
-            else {
-                painValues.append(0)
-                painLabels.append(NSLocalizedString("N/A", comment: ""))
+            if let result = breakfastEvents[dayComponents].first?.result, score = Int(result.valueString) where score > 0 {
+
+                // add our breakfastEvent to our glucose array to get our average
+                glucoseAverages.append(score)
+                
             }
             
-            // Store the medication adherance value for the current day.
-            let medicationEventsForDay = medicationEvents[dayComponents]
-            if let adherence = percentageEventsCompleted(medicationEventsForDay) where adherence > 0.0 {
-                // Scale the adherance to the same 0-10 scale as pain values.
-                let scaledAdeherence = adherence * 10.0
+            // loop through the lunchEvent
+            if let result = lunchEvents[dayComponents].first?.result, score = Int(result.valueString) where score > 0 {
+                // add our lunchEvent to our glucose array to get our average
+                glucoseAverages.append(score)
+            }
+            
+            // loop through the dinnerEvent
+            if let result = dinnerEvents[dayComponents].first?.result, score = Int(result.valueString) where score > 0 {
+                // add our lunchEvent to our glucose array to get our average
+                glucoseAverages.append(score)
+            }
+            
+            // get our average and total accordingly
+            if glucoseAverages.count != 0 {
                 
-                medicationValues.append(scaledAdeherence)
-                medicationLabels.append(percentageFormatter.stringFromNumber(adherence)!)
+                let average = glucoseAverages.averageInt
+                
+                if average != 0 {
+                    glucoseValues.append(average)
+                    glucoseLabels.append(String(average))
+                }
+                    
+            } else {
+                glucoseValues.append(0)
+                glucoseLabels.append(NSLocalizedString("N/A", comment: ""))
+            }
+        
+            // Store the medication adherance value for the current day.
+            let diabetesEventsForDay = diabetesEvents[dayComponents]
+            if let adherence = percentageEventsCompleted(diabetesEventsForDay) where adherence > 0.0 {
+                // Scale the adherance to the same 0-10 scale as pain values.
+                let scaledAdeherence = adherence * 500.0
+                
+                diabetesValues.append(scaledAdeherence)
+                diabetesLabels.append(percentageFormatter.stringFromNumber(adherence)!)
             }
             else {
-                medicationValues.append(0.0)
-                medicationLabels.append(NSLocalizedString("N/A", comment: ""))
+                diabetesValues.append(0.0)
+                diabetesLabels.append(NSLocalizedString("N/A", comment: ""))
             }
             
             axisTitles.append(dayOfWeekFormatter.stringFromDate(dayDate))
@@ -177,21 +210,21 @@ class BuildInsightsOperation: NSOperation {
         }
 
         // Create a `OCKBarSeries` for each set of data.
-        let painBarSeries = OCKBarSeries(title: "Pain", values: painValues, valueLabels: painLabels, tintColor: Colors.Blue.color)
-        let medicationBarSeries = OCKBarSeries(title: "Medication Adherence", values: medicationValues, valueLabels: medicationLabels, tintColor: Colors.LightBlue.color)
+        let painBarSeries = OCKBarSeries(title: "Average Daily Glucose Levels", values: glucoseValues, valueLabels: glucoseLabels, tintColor: Colors.Blue.color)
+        let medicationBarSeries = OCKBarSeries(title: "Diabetes Management Adherence", values: diabetesValues, valueLabels: diabetesLabels, tintColor: Colors.LightBlue.color)
 
         /*
             Add the series to a chart, specifing the scale to use for the chart
             rather than having CareKit scale the bars to fit.
         */
-        let chart = OCKBarChart(title: "Back Pain",
+        let chart = OCKBarChart(title: "Blood Glucose Levels",
                                 text: nil,
                                 tintColor: Colors.Blue.color,
                                 axisTitles: axisTitles,
                                 axisSubtitles: axisSubtitles,
                                 dataSeries: [painBarSeries, medicationBarSeries],
                                 minimumScaleRangeValue: 0,
-                                maximumScaleRangeValue: 10)
+                                maximumScaleRangeValue: 500)
         
         return chart
     }

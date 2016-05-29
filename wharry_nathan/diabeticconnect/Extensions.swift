@@ -97,6 +97,19 @@ extension String {
     }
 }
 
+extension _ArrayType where Generator.Element == Int {
+    var total: Int {
+        guard !isEmpty else { return 0 }
+        return reduce(0, combine: +)
+    }
+    var average: Double {
+        return Double(total)/Double(count)
+    }
+    var averageInt: Int {
+        return Int(total/count)
+    }
+}
+
 // MARK: SwiftData Extensions
 
 // user table query to check if a user has been created
